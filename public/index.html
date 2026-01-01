@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <title>Chat Puskesmas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="chat-container">
+  <div class="chat-header">
+    💬 Layanan Informasi Puskesmas
+  </div>
+
+  <div class="chat-box" id="chatBox">
+    <div class="bot">
+      Halo 👋 <br>
+      Saya asisten Puskesmas. Silakan tanyakan jadwal, alamat, atau pendaftaran.
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input type="text" id="userInput" placeholder="Ketik pertanyaan Anda..." />
+    <button onclick="sendMessage()">Kirim</button>
+  </div>
+</div>
+
+<script src="chat.js"></script>
+</body>
+</html>
