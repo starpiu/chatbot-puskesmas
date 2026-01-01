@@ -17,9 +17,9 @@ app.use(express.static("public"));
 /* ======================
    DIALOGFLOW CONFIG
 ====================== */
-const projectId = "chatbot-puskesmas-h9mi";
-const sessionClient = new dialogflow.SessionsClient({
-  keyFilename: "chatbot-puskesmas-h9mi.json",
+const projectId = process.env.PROJECT_ID;;
+const sessionClient =new dialogflow.SessionsClient({
+  credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS)
 });
 
 /* ======================
