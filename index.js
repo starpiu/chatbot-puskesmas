@@ -17,10 +17,15 @@ app.use(express.static("public"));
 /* ======================
    DIALOGFLOW CONFIG
 ====================== */
-const projectId = process.env.PROJECT_ID;;
-const sessionClient =new dialogflow.SessionsClient({
-  credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS)
-});
+require('dotenv').config();
+
+// const projectId = process.env.PROJECT_ID;;
+// const sessionClient =new dialogflow.SessionsClient({
+//   credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS)
+// });
+const projectId = process.env.PROJECT_ID;
+const sessionClient = new dialogflow.SessionsClient();
+module.exports = { sessionClient, projectId };
 
 /* ======================
    API CHATBOT
