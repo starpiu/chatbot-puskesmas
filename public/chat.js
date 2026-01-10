@@ -5,23 +5,51 @@ async function sendMessage() {
 
   if (!message) return;
 
-  // tampilkan pesan user
-  chatBox.innerHTML += `<div class="user">${message}</div>`;
+  // ===============================
+  // Bubble USER
+  // ===============================
+  chatBox.innerHTML += `
+    <div class="message user">
+      ${message}
+    </div>
+  `;
+
   input.value = "";
   chatBox.scrollTop = chatBox.scrollHeight;
 
-  // kirim ke server
-  const response = await fetch("/chat", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ message })
-  });
+  try {
+    // ===============================
+    // Kirim ke server
+    // ===============================
+    const response = await fetch("/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message })
+    });
 
-  const data = await response.json();
+    const data = await response.json();
 
-  // tampilkan balasan bot
-  chatBox.innerHTML += `<div class="bot">${data.reply}</div>`;
+    // ===============================
+    // Bubble BOT
+    // ===============================
+    chatBox.innerHTML += `
+      <div class="message bot">
+        ${data.reply}
+      </div>
+    `;
+
+  } catch (error) {
+    // ===============================
+    // Error handling (server down)
+    // ===============================
+    chatBox.innerHTML += `
+      <div class="message bot">
+        Terjadi kesalahan server
+      </div>
+    `;
+  }
+
   chatBox.scrollTop = chatBox.scrollHeight;
 }
