@@ -12,7 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 
 // ⬇️ INI YANG KAMU TANYAKAN (WAJIB DI SINI)
-app.use(express.static("public"));
+app.use(express.static(__dirname));
 
 /* ======================
    DIALOGFLOW CONFIG
