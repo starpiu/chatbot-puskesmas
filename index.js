@@ -63,13 +63,6 @@ app.post("/chat", async (req, res) => {
   }
 });
 
-if (process.env.NODE_ENV !== "production") {
-  app.listen(2000, () => {
-    console.log("🚀 Server jalan di http://localhost:2000");
-  });
-}
-
-
 /* ======================
    EXPORT UNTUK VERCEL
 ====================== */
