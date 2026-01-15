@@ -26,9 +26,7 @@ app.use(express.static(path.join(__dirname, "public")));
    DIALOGFLOW CONFIG
 ====================== */
 const projectId = process.env.PROJECT_ID;
-const sessionClient = new dialogflow.SessionsClient({
-  credentials: JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS),
-});
+const sessionClient = new dialogflow.SessionsClient();
 
 /* ======================
    API CHATBOT
