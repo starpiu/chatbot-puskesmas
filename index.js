@@ -1,31 +1,32 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const dialogflow = require("@google-cloud/dialogflow");
-const { v4: uuidv4 } = require("uuid");
-const open = require("open");
+import express from "express";
+import bodyParser from "body-parser";
+import dialogflow from "@google-cloud/dialogflow";
+import { v4 as uuidv4 } from "uuid";
+import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
+
+dotenv.config();
 
 const app = express();
+
+/* ======================
+   FIX __dirname (ESM)
+====================== */
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /* ======================
    MIDDLEWARE
 ====================== */
 app.use(bodyParser.json());
-
-// ⬇️ INI YANG KAMU TANYAKAN (WAJIB DI SINI)
 app.use(express.static(__dirname));
 
 /* ======================
    DIALOGFLOW CONFIG
 ====================== */
-require('dotenv').config();
-
-// const projectId = process.env.PROJECT_ID;;
-// const sessionClient =new dialogflow.SessionsClient({
-//   credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS)
-// });
 const projectId = process.env.PROJECT_ID;
 const sessionClient = new dialogflow.SessionsClient();
-module.exports = { sessionClient, projectId };
 
 /* ======================
    API CHATBOT
@@ -63,17 +64,6 @@ app.post("/chat", async (req, res) => {
 });
 
 /* ======================
-   SERVER
+   EXPORT UNTUK VERCEL
 ====================== */
-
-
-app.listen(2000, () => {
-  console.log("🚀 Server jalan di http://localhost:2000");
-})
-//   // buka otomatis di Chrome
-//   open("http://localhost:2000", {
-//     app: {
-//       name: "chrome"
-//     }
-//   });
-// });
+export default app;
