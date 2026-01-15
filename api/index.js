@@ -2,11 +2,10 @@ import express from "express";
 import bodyParser from "body-parser";
 import dialogflow from "@google-cloud/dialogflow";
 import { v4 as uuidv4 } from "uuid";
-//import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
 
-//dotenv.config();
+
 const app = express();
 
 /* ======================
