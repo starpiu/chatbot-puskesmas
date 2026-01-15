@@ -20,7 +20,7 @@ const __dirname = path.dirname(__filename);
    MIDDLEWARE
 ====================== */
 app.use(bodyParser.json());
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, "public")));
 
 /* ======================
    DIALOGFLOW CONFIG
@@ -62,6 +62,13 @@ app.post("/chat", async (req, res) => {
     res.status(500).json({ reply: "Terjadi kesalahan server" });
   }
 });
+
+if (process.env.NODE_ENV !== "production") {
+  app.listen(2000, () => {
+    console.log("🚀 Server jalan di http://localhost:2000");
+  });
+}
+
 
 /* ======================
    EXPORT UNTUK VERCEL
