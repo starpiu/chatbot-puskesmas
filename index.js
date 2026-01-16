@@ -19,13 +19,16 @@ const __dirname = path.dirname(__filename);
    MIDDLEWARE
 ====================== */
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, "public",)));
+app.use(express.static("public",));
 
 /* ======================
    DIALOGFLOW CONFIG
 ====================== */
 const projectId = process.env.PROJECT_ID;
-const sessionClient = new dialogflow.SessionsClient();
+const sessionClient = new dialogflow.SessionsClient({
+  credentials: process.env.GOOGLE_CREDENTIALS
+    ? JSON.parse(process.env.GOOGLE_CREDENTIALS)
+    : undefined,});
 
 /* ======================
    API CHATBOT
@@ -62,7 +65,12 @@ app.post("/chat", async (req, res) => {
   }
 });
 
-/* ======================
-   EXPORT UNTUK VERCEL
-====================== */
-export default app;
+const port = process.env.PORT || 3000;
+
+if (!process.env.VERCEL) {
+  app.listen(port, () => {
+    console.log(`🚀 Server jalan di http://localhost:${port}`);
+  });
+}
+
+module.exports = app;
