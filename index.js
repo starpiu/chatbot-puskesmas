@@ -92,4 +92,4 @@ if (!process.env.VERCEL) {
   });
 }
 
-module.exports = app;
+export default app;
