@@ -21,7 +21,7 @@ async function sendMessage() {
     // ===============================
     // Kirim ke server
     // ===============================
-    const response = await fetch("/chat", {
+    const response = await fetch("/api/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -36,7 +36,7 @@ async function sendMessage() {
     // ===============================
     chatBox.innerHTML += `
       <div class="message bot">
-        ${data.reply}
+          <div class="bot-text">${escapeHtml(data.reply)}</div>
       </div>
     `;
 
@@ -46,7 +46,7 @@ async function sendMessage() {
     // ===============================
     chatBox.innerHTML += `
       <div class="message bot">
-        Terjadi kesalahan server
+        <div class="bot-text">⚠️ Terjadi kesalahan koneksi</div>
       </div>
     `;
   }
