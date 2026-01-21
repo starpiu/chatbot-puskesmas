@@ -1,7 +1,15 @@
 {
     "version": 2,
-    "buildCommand": "npm install",
-    "outputDirectory": "public",
+    "functions": {
+        "index.js": {
+            "memory": 1024,
+            "maxDuration": 60
+        },
+        "api/chat.js": {
+            "memory": 1024,
+            "maxDuration": 60
+        }
+    },
     "rewrites": [
         {
             "source": "/api/chat",
@@ -10,16 +18,6 @@
         {
             "source": "/(.*)",
             "destination": "/index.js"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/public/(.*)",
-            "dest": "/public/$1"
-        },
-        {
-            "src": "/(.*)",
-            "dest": "/index.js"
         }
     ]
 }
