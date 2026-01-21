@@ -1,23 +1,15 @@
 {
     "version": 2,
-    "functions": {
-        "index.js": {
-            "memory": 1024,
-            "maxDuration": 60
-        },
-        "api/chat.js": {
-            "memory": 1024,
-            "maxDuration": 60
-        }
-    },
+    "public": "public",
+    "buildCommand": "npm install",
     "rewrites": [
         {
-            "source": "/api/chat",
-            "destination": "/api/chat.js"
+            "source": "/api/(.*)",
+            "destination": "/api/$1.js"
         },
         {
             "source": "/(.*)",
-            "destination": "/index.js"
+            "destination": "/index.html"
         }
     ]
 }
