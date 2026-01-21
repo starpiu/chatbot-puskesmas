@@ -1,9 +1,25 @@
 {
     "version": 2,
+    "buildCommand": "npm install",
+    "outputDirectory": "public",
     "rewrites": [
         {
             "source": "/api/chat",
             "destination": "/api/chat.js"
+        },
+        {
+            "source": "/(.*)",
+            "destination": "/index.js"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/public/(.*)",
+            "dest": "/public/$1"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/index.js"
         }
     ]
 }
