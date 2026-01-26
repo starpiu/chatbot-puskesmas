@@ -1,10 +1,14 @@
 {
     "version": 2,
-    "buildCommand": "npm install",
+    "public": "public",
     "rewrites": [
         {
             "source": "/",
-            "destination": "/api/chat"
+            "destination": "/api/index.js"
+        },
+        {
+            "source": "/api/(.*)",
+            "destination": "/api/$1.js"
         }
     ]
 }

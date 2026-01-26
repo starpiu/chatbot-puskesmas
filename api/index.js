@@ -1,32 +1,27 @@
-require("dotenv").config();
+const fs = require('fs');
+const path = require('path');
 
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
-const path = require("path");
+export default function handler(req, res) {
+  // Set CORS headers
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,HEAD,PUT,PATCH,POST,DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
-const app = express();
+  if (req.method === 'OPTIONS') {
+    res.status(200).end();
+    return;
+  }
 
-app.use(cors());
-app.use(bodyParser.json());
-
-// Serve static files from public folder
-app.use(express.static(path.join(__dirname, "../public")));
-
-// Homepage route
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/index.html"));
-});
-
-// Import chat handler
-const chatHandler = require("./chat.js").default;
-
-// Chat API route
-app.post("/api/chat", chatHandler);
-
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({ error: "Route not found" });
-});
-
-module.exports = app;
+  try {
+    // Serve index.html for root path
+    const filePath = path.join(process.cwd(), 'public', 'index.html');
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.status(200).send(fileContent);
+  } catch (error) {
+    console.error('Error serving homepage:', error);
+    res.status(500).json({ error: 'Failed to serve homepage' });
+  }
+}
