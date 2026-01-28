@@ -41,7 +41,7 @@ const sessionClient = new dialogflow.SessionsClient({
    CHAT API
 ====================== */
 
-app.post("/", async (req, res) => {
+app.post("/api/chat", async (req, res) => {
   const { message } = req.body;
 
   if (!message) {
