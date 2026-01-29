@@ -12,10 +12,11 @@ body {
   align-items: center;
 }
 
-.chat-wrapper {
-  width: 100%;
-  max-width: 460px;
-  padding: 10px;
+@media (max-width: 768px) {
+  .chat-wrapper {
+    max-width: 100%;
+    padding: 0;
+  }
 }
 
 .chat-card {
@@ -26,7 +27,12 @@ body {
   flex-direction: column;
   height: 700px;
 }
-
+@media (max-width: 768px) {
+  .chat-card {
+    height: 100vh;
+    border-radius: 0;
+  }
+}
 /* HEADER */
 .chat-header {
   display: flex;
@@ -69,7 +75,11 @@ body {
   line-height: 1.5;
   margin-bottom: 10px;
 }
-
+@media (max-width: 480px) {
+  .message {
+    font-size: 15px;
+  }
+}
 .message.bot {
   background: #e9f5f0;
   color: #064e3b;
@@ -115,7 +125,7 @@ body {
   border: 1px solid #ddd;
   border-radius: 12px;
   padding: 10px 14px;
-  font-size: 14px;
+  font-size: 16px;
   outline: none;
 }
 
