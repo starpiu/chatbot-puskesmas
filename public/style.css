@@ -13,15 +13,27 @@ body {
 }
 @media (max-width: 768px) {
   body {
+    justify-content: flex-start;
     align-items: stretch;
   }
-}
-@media (max-width: 768px) {
+
   .chat-wrapper {
     max-width: 100%;
     padding: 0;
   }
+
+  .chat-card {
+    height: 100dvh;
+    border-radius: 0;
+  }
 }
+
+.chat-wrapper {
+  width: 100%;
+  max-width: 460px;
+  padding: 10px;
+}
+
 
 .chat-card {
   background: #ffffff;
@@ -30,12 +42,6 @@ body {
   display: flex;
   flex-direction: column;
   height: 700px;
-}
-@media (max-width: 768px) {
-  .chat-card {
-    height: 100vh;
-    border-radius: 0;
-  }
 }
 /* HEADER */
 .chat-header {
