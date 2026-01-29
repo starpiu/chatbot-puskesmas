@@ -23,7 +23,7 @@ body {
   }
 
   .chat-card {
-    height: 100dvh;
+    height: 99dvh;
     border-radius: 0;
   }
 }
@@ -162,6 +162,6 @@ body {
   text-align: center;
   font-size: 11px;
   color: #9ca3af;
-  padding: 6px 8px;
+  padding: 6px 4px;
   border-top: 1px solid #eee;
 }
